@@ -14,16 +14,22 @@ const SearchForm = () => {
     const handleSearchData = async(place: string, date: string) => {
         console.log(date)
         console.log(place)
-        const header = {
+        // const header = {
+        //     "headers": {
+        //         "Access-Control-Allow-Origin": "*",
+        //         "responseType": ""
+        //     }
+        // }
+
+        const headers ={
             "headers": {
-                // "Access-Control-Allow-Origin": "*",
-                "Content-Type": "text/csv; charset=UTF-8"
+
+                "Accept": "application/json"
             }
         }
-        const data = await axios(`http://ladataverte.fr/api/1.0/data_points?id_indicators[]=1&id_indicators[]=4&type_place[]=${place}&from=${date}&to=${date}`, header)
-
-  
-        console.log('hello')
+        // const data = await(await fetch(`http://ladataverte.fr/api/1.0/data_points?id_indicators[]=1&id_indicators[]=4&type_place[]=${place}&from=${date}&to=${date}`, {mode: 'no-cors'})).type;
+        const data = await axios(`https://api.carbonintensity.org.uk/regional/postcode/SE13`, headers);
+   
         console.log(data)
         setDate("")
         setPlace("")
