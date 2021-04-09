@@ -1,52 +1,33 @@
 import React from 'react';
-import useEffect from 'react';
-import axios from 'axios';
+// import useEffect from 'react';
+// import axios from 'axios';
 import CSS from 'csstype';
 
-// type Props = {
-//     searchData: (place: string, date: string) => void;
-// }
+type Props = {
+    searchData: (date: string) => void;
+}
 
-const SearchForm = () => {
-    const [place, setPlace] = React.useState("");
+const SearchForm = ({searchData}: Props) => {
+    
     const [date, setDate] = React.useState("");
 
-    const handleSearchData = async(place: string, date: string) => {
-        console.log(date)
-        console.log(place)
-        // const header = {
-        //     "headers": {
-        //         "Access-Control-Allow-Origin": "*",
-        //         "responseType": ""
-        //     }
-        // }
+    // const handleSearchData = async(date: string) => {
+    //     console.log(date)
 
-        const headers ={
-            "headers": {
 
-                "Accept": "application/json"
-            }
-        }
-        // const data = await(await fetch(`http://ladataverte.fr/api/1.0/data_points?id_indicators[]=1&id_indicators[]=4&type_place[]=${place}&from=${date}&to=${date}`, {mode: 'no-cors'})).type;
-        const data = await axios(`https://api.carbonintensity.org.uk/regional/postcode/SE13`, headers);
+    //     const headers ={
+    //         "headers": {
+    //             "Accept": "application/json"
+    //         }
+    //     }
+    //     const data = await axios(`https://api.carbonintensity.org.uk/regional/intensity/${date}/pt24h`, headers);
    
-        console.log(data)
-        setDate("")
-        setPlace("")
-    }
+    //     console.log(data.data)
+    //     setDate("")
+    // }
 
     return (
         <div>
-            <label>Search countries or cities: </label>
-            <select
-                style={inputStyle}
-                onChange={(e) => setPlace(e.currentTarget.value)}
-            >
-                <option>Please choose...</option>
-                <option value="country">Countries</option>
-                <option value="city">Cities</option>
-            </select>
-            <br />
             <label>Type in a date:</label>
             <input
                 style={inputStyle}
@@ -57,20 +38,13 @@ const SearchForm = () => {
             >
             </input>
             <button
-                onClick={() => handleSearchData(place, date)}
+                onClick={() => searchData(date)}
                 style={buttonStyle}
             >Search</button>
         </div>
     )
 }
 
-const formStyle: CSS.Properties = {
-    display: 'flex',
-    justifyContent: 'center',
-    fontSize: '23px',
-    fontFamily: 'Helvetica',
-    margin: '10px',
-}
 
 const inputStyle: CSS.Properties = {
     fontSize: '15px',
