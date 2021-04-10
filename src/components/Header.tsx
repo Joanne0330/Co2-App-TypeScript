@@ -3,8 +3,8 @@ import CSS from 'csstype'
 const Header = () => {
     return (
         <div style={headerStyle}>
-            <h1>Co2 Comparison App</h1>
-            <h4>Compare Co2 consumptions of 18 UK regions by date...</h4>
+            <h1>Co2 Consumption App</h1>
+            <h4>Search Co2 consumption of a UK city or region by postcode and date...</h4>
         </div>
     )
 }

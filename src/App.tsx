@@ -1,33 +1,38 @@
 import React from 'react';
 import axios from 'axios';
+// CSS
+import './App.css';
 //components
 import Header from './components/Header';
 import SearchForm from './components/SearchForm';
+import Table from './components/Table';
 
 
-export type generationMixType = {
+export type GenerationMixType = {
   fuel: string;
   perc: number
 }
 
-// export type cityName = {
+// export type CityName = {
 //   shortname: string
 // }
 
-// export type postcode = {
+// export type Postcode = {
 //   postcode: string
 // }
 
 function App() {
+
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
   //general info
-  const [city, setCity] = React.useState("");
-  const [postcode, setPostcode] = React.useState("")
+  const [city, setCity] = React.useState<string>("");
+  const [postcode, setPostcode] = React.useState<string>("")
 
   // timed info
-  const [morningGM, setMorningGM] = React.useState([] as generationMixType[]);
-  const [middayGM, setMiddayGM] = React.useState([] as generationMixType[]);
-  const [eveningGM, setEveningGM] = React.useState([] as generationMixType[]);
-  const [nightGM, setNightGM] = React.useState([] as generationMixType[]);
+  const [morningGM, setMorningGM] = React.useState([] as GenerationMixType[]);
+  const [middayGM, setMiddayGM] = React.useState([] as GenerationMixType[]);
+  const [eveningGM, setEveningGM] = React.useState([] as GenerationMixType[]);
+  const [nightGM, setNightGM] = React.useState([] as GenerationMixType[]);
 
 
   const handleSearchData = async(postcode: string, date: string): Promise<any> => {
@@ -35,20 +40,20 @@ function App() {
       "headers": {
           "Accept": "application/json"
       }
-    }
+    };
     const data = await axios(`https://api.carbonintensity.org.uk/regional/intensity/${date}/fw24h/postcode/${postcode}`, headers);
 
     // general info
     const generalData = data.data.data;
-    console.log(generalData)
+    console.log(generalData);
 
-    setCity(generalData.shortname)
-    setPostcode(generalData.postcode)
+    setCity(generalData.shortname);
+    setPostcode(generalData.postcode);
 
 
     //morning 7am
     const morningDetails = generalData.data[15].generationmix;
-    setMorningGM(morningDetails)
+    setMorningGM(morningDetails);
 
     //midday 12pm
     const middayDetails = generalData.data[25].generationmix;
@@ -61,7 +66,10 @@ function App() {
 
     //near midnight
     const nightDetails = generalData.data[48].generationmix;
-    setNightGM(nightDetails)
+    setNightGM(nightDetails);
+
+    setIsLoading(true);
+
   };
 
   console.log(city)
@@ -75,9 +83,19 @@ function App() {
   return (
     <div>
       <Header />
-      <SearchForm searchData={handleSearchData}/>
-
-
+      <div style={{backgroundColor: 'lightblue'}}>
+        <SearchForm searchData={handleSearchData}/>
+        {isLoading && <div>
+          <Table 
+            city={city}
+            postcode={postcode}
+            morning={morningGM}
+            midday={middayGM}
+            evening={eveningGM}
+            night={nightGM} 
+          />
+        </div>}
+      </div>
     </div>
   );
 }

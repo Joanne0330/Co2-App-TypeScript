@@ -42,6 +42,10 @@
     ]
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.0.12",
+    "@types/react-bootstrap": "^0.32.25",
+    "bootstrap": "^4.6.0",
+    "react-bootstrap": "^1.5.2",
     "typescript": "^4.2.3"
   }
 }
