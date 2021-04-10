@@ -6,11 +6,17 @@ table {
 
 td,
 th {
-  border: 1px solid #dddddd;
+  border: 3px solid #2b2929;
   text-align: left;
   padding: 8px;
 }
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+.app {
+  background-color: aliceblue;
+  overflow: auto;
+  min-height: 650px;
 }

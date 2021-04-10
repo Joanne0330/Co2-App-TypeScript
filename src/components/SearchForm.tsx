@@ -48,6 +48,7 @@ const SearchForm = ({searchData}: Props) => {
 
 const divStyle: CSS.Properties = {
     fontFamily: 'Helvetica',
+    fontSize: '20px',
     margin: '10px',
     display: 'flex',
     justifyContent: 'center'

@@ -19,12 +19,12 @@ const Table = ({city, postcode, morning, midday, evening, night }: Props) => {
     return (
         <div>
             <div>
-                <h1 style={titleStyle}>Co2 usage of {city} {postcode}: </h1>
+                <h1 style={titleStyle}>Carbon intensity and generation mix of {city} {postcode}: </h1>
             </div>
             <div>
                 <table style={tableStyle}>
                     <tr>
-                        <th>type of energy</th>
+                        <th>Fuel type</th>
                         <th>Morning 7am</th>
                         <th>Midday 12pm</th>
                         <th>Evening 6pm</th>

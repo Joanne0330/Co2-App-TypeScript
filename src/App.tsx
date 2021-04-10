@@ -83,7 +83,7 @@ function App() {
   return (
     <div>
       <Header />
-      <div style={{backgroundColor: 'lightblue'}}>
+      <div className='app'>
         <SearchForm searchData={handleSearchData}/>
         {isLoading && <div>
           <Table 
