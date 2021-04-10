@@ -4,47 +4,55 @@ import React from 'react';
 import CSS from 'csstype';
 
 type Props = {
-    searchData: (date: string) => void;
+    searchData: (postcode: string, date: string) => void;
 }
 
 const SearchForm = ({searchData}: Props) => {
     
+    const [postcode, setPostcode] = React.useState("");
     const [date, setDate] = React.useState("");
 
-    // const handleSearchData = async(date: string) => {
-    //     console.log(date)
-
-
-    //     const headers ={
-    //         "headers": {
-    //             "Accept": "application/json"
-    //         }
-    //     }
-    //     const data = await axios(`https://api.carbonintensity.org.uk/regional/intensity/${date}/pt24h`, headers);
-   
-    //     console.log(data.data)
-    //     setDate("")
-    // }
-
+    const onClicking = (postcode: string, date: string) => {
+        searchData(postcode, date);
+        setPostcode("");
+        setDate("");
+    }
     return (
-        <div>
+        <div style={divStyle}>
+            <label>Type in a postcode: </label>
+            <input
+                style={inputStyle}
+                type="text"
+                placeholder="Ex: SE13, M1..."
+                value={postcode}
+                onChange={(e) => setPostcode(e.currentTarget.value)}
+            >
+            </input>
             <label>Type in a date:</label>
             <input
                 style={inputStyle}
                 type="text"
-                placeholder="format: YYYY-MM-DD..."
+                placeholder="Format: YYYY-MM-DD..."
                 value={date}
                 onChange={(e) => setDate(e.currentTarget.value)}
             >
             </input>
             <button
-                onClick={() => searchData(date)}
+                onClick={() => onClicking(postcode, date)}
+                // onClick={() => searchData(postcode, date)}
                 style={buttonStyle}
             >Search</button>
         </div>
     )
 }
 
+const divStyle: CSS.Properties = {
+    fontFamily: 'Helvetica',
+    margin: '10px',
+    display: 'flex',
+    justifyContent: 'center'
+
+}
 
 const inputStyle: CSS.Properties = {
     fontSize: '15px',
