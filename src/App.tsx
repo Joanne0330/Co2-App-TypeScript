@@ -5,6 +5,7 @@ import './App.css';
 //components
 import Header from './components/Header';
 import SearchForm from './components/SearchForm';
+import SearchUK from './components/SearchUK';
 import Table from './components/Table';
 
 
@@ -83,7 +84,8 @@ function App() {
   return (
     <div>
       <Header />
-      <div className='app'>
+      <div className='cityByDate'>
+        <h4 className="h4Style">Search carbon intensity of a UK city or region by postcode and date</h4>
         <SearchForm searchData={handleSearchData}/>
         {isLoading && <div>
           <Table 
@@ -95,6 +97,10 @@ function App() {
             night={nightGM} 
           />
         </div>}
+      </div>
+      <div className='regionsCompare'>
+          <h4 className='h4Style'>Search Carbon intensity of 24 UK regions by date</h4>
+          <SearchUK />
       </div>
     </div>
   );

@@ -1,33 +1,16 @@
 import React from 'react';
-// import useEffect from 'react';
-// import axios from 'axios';
 import CSS from 'csstype';
 
-type Props = {
-    searchData: (postcode: string, date: string) => void;
-}
-
-const SearchForm = ({searchData}: Props) => {
+const SearchUK = () => {
     
-    const [postcode, setPostcode] = React.useState("");
     const [date, setDate] = React.useState("");
 
-    const onClicking = (postcode: string, date: string) => {
-        searchData(postcode, date);
-        setPostcode("");
+    const onClicking = (date: string) => {
+
         setDate("");
     }
     return (
         <div style={divStyle}>
-            <label>Type in a postcode: </label>
-            <input
-                style={inputStyle}
-                type="text"
-                placeholder="Ex: SE13, M1..."
-                value={postcode}
-                onChange={(e) => setPostcode(e.currentTarget.value)}
-            >
-            </input>
             <label>Type in a date:</label>
             <input
                 style={inputStyle}
@@ -38,7 +21,7 @@ const SearchForm = ({searchData}: Props) => {
             >
             </input>
             <button
-                onClick={() => onClicking(postcode, date)}
+                onClick={() => onClicking( date)}
                 // onClick={() => searchData(postcode, date)}
                 style={buttonStyle}
             >Search</button>
@@ -46,8 +29,6 @@ const SearchForm = ({searchData}: Props) => {
 
     )
 }
-
-
 
 const divStyle: CSS.Properties = {
     fontFamily: 'Helvetica',
@@ -75,4 +56,4 @@ const buttonStyle: CSS.Properties = {
     borderRadius: '10px'
 }
 
-export default SearchForm
+export default SearchUK

@@ -15,8 +15,20 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
-.app {
+.cityByDate {
   background-color: aliceblue;
   overflow: auto;
-  min-height: 650px;
+  min-height: 327px;
+}
+
+.regionsCompare {
+  background-color: whitesmoke;
+  overflow: auto;
+  min-height: 327px;
+}
+
+.h4Style {
+  font-family: Helvetica;
+  font-size: 25px;
+  text-align: center;
 }
